@@ -1,0 +1,3 @@
+set ranges [gets stdin]
+
+puts ranges
