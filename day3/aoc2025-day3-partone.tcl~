@@ -1,0 +1,6 @@
+set banks {}
+while {[gets stdin bank] >= 0} {
+    lappend banks $bank
+}
+
+puts "$banks"

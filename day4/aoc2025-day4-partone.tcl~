@@ -1,0 +1,40 @@
+#!/usr/bin/tclsh
+
+# Global configuration
+set checkRadius 1
+
+# Obtain the input.
+set rows(0) ""
+for {set i 0} {[gets stdin line] != -1} {incr i} {
+    set rows($i) $line
+}
+
+# Utility function for counting the number of times any character in a set occurs in a string
+proc countChar {str char} {
+    set occurances 0
+    
+    regsub -all "\[$char\]" $str "1"
+    regsub -all "\[^$char\]" $str "0"
+    
+    set digits [split $str ""]
+    foreach digit $digits {
+	set occurances [expr {$occurances + $digit}]
+    }
+
+    return $occurances
+}
+
+# Then do the check that there are less than 4 rolls around this one for every roll in the array...
+for {set i 0} {$i <= ([array size rows] - 1)} {incr i] {
+    set row $rows(i)
+    
+    for {set j 0} {$j <= ([string length $row] - 1)} {incr j} {
+	# The loop can and should be skipped entirely if this isn't a roll of paper.
+	if {[string index $row $j] eq "."} {
+	    continue
+	}
+	
+	for {set k [expr {$i - $checkRadius}]} {$k <= ($i + $checkRadius)} {incr k} {
+	    
+	    
+	
